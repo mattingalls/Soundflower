@@ -18,6 +18,11 @@ Then inside that folder, look for a "Soundflower.kext" file. If there is one,
 
 /System/Library/Extensions
 
+Consider also checking for the following files for old installations and likewise deleting them: (These are previously cited in `https://github.com/RogueAmoeba/Soundflower-Original/blob/master/Tools/Uninstall%20Soundflower.scpt`)
+- /Library/Receipts/SoundFlower*
+- /var/db/receipts/com.cycling74.soundflower.*
+- /Applications/Soundflower
+
 **RESTART** your computer
 
 
