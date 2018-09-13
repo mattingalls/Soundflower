@@ -48,8 +48,8 @@ Open3.popen3("xcodebuild -project Soundflower.xcodeproj -target Soundflower -con
   err = stderr.read
 end
 
-`sudo chown -R root #{@svn_root}/Build/InstallerRoot/System/Library/Extensions/Soundflower.kext`
-`sudo chgrp -R wheel #{@svn_root}/Build/InstallerRoot/System/Library/Extensions/Soundflower.kext`
+`sudo chown -R root #{@svn_root}/Build/InstallerRoot/Library/Extensions/Soundflower.kext`
+`sudo chgrp -R wheel #{@svn_root}/Build/InstallerRoot/Library/Extensions/Soundflower.kext`
 
 #if /BUILD SUCCEEDED/.match(out)
 #  puts "    BUILD SUCCEEDED"
