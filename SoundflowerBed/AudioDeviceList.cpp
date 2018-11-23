@@ -43,6 +43,11 @@
 #include "AudioDeviceList.h"
 #include "AudioDevice.h"
 
+/* verify_noerr was deprecated and removed in OS X High Sierra */
+#ifndef verify_noerr
+#define verify_noerr __Verify_noErr
+#endif
+
 AudioDeviceList::AudioDeviceList(bool inputs) :
 	mInputs(inputs)
 {
