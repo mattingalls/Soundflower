@@ -7,17 +7,16 @@ is the latest version
 
 
 # THE MOST RELIABLE WAY TO UNINSTALL
-From the Finder, **HIT** Shift-Cmd-G and **TYPE**:
 
-/Library/Extensions
+**OPEN THE TERMINAL UTILITY APP**
 
-Then inside that folder, look for a "Soundflower.kext" file. If there is one,
-**DRAG** it into the trash (you may be asked for the admin password)
-
-**REPEAT**, typing in this folder path:
-
-/System/Library/Extensions
-
+then type these 3 lines: 
+(entering your password if asked)
+```
+sudo rm -r /System/Library/Extensions
+sudo rm -r /Library/Extensions
+sudo kextcache --clear-staging
+```
 **RESTART** your computer
 
 
