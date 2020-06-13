@@ -8,7 +8,7 @@ is the latest version
 
 # THE MOST RELIABLE WAY TO UNINSTALL
 
-**OPEN THE TERMINAL UTILITY APP**
+**OPEN THE TERMINAL APP** (found in /Applications/Utilities/)
 
 then type these 3 lines: 
 (entering your password if asked)
