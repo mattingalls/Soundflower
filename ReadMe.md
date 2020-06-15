@@ -10,14 +10,14 @@ is the latest version
 
 From the Finder, **HIT** Shift-Cmd-G and **TYPE**:
 
- /Library/Extensions
+ ```/Library/Extensions```
 
  Then inside that folder, look for a "Soundflower.kext" file. If there is one,
  **DRAG** it into the trash (you may be asked for the admin password)
 
  **REPEAT**, typing in this folder path:
 
- /System/Library/Extensions
+ ```/System/Library/Extensions```
  
 Then **OPEN THE TERMINAL APP** (found in /Applications/Utilities/)
 
