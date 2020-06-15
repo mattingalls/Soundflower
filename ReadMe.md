@@ -8,15 +8,24 @@ is the latest version
 
 # THE MOST RELIABLE WAY TO UNINSTALL
 
-**OPEN THE TERMINAL APP** (found in /Applications/Utilities/)
+From the Finder, **HIT** Shift-Cmd-G and **TYPE**:
 
-then type these 3 lines: 
-(entering your password if asked)
+ /Library/Extensions
+
+ Then inside that folder, look for a "Soundflower.kext" file. If there is one,
+ **DRAG** it into the trash (you may be asked for the admin password)
+
+ **REPEAT**, typing in this folder path:
+
+ /System/Library/Extensions
+ 
+Then **OPEN THE TERMINAL APP** (found in /Applications/Utilities/)
+
+then type this line, entering your password when asked.
 ```
-sudo rm -r /System/Library/Extensions/Soundflower.kext
-sudo rm -r /Library/Extensions/Soundflower.kext
 sudo kextcache --clear-staging
 ```
+
 **RESTART** your computer
 
 
