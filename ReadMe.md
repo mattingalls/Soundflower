@@ -13,8 +13,8 @@ is the latest version
 then type these 3 lines: 
 (entering your password if asked)
 ```
-sudo rm -r /System/Library/Extensions
-sudo rm -r /Library/Extensions
+sudo rm -r /System/Library/Extensions/Soundflower.kext
+sudo rm -r /Library/Extensions/Soundflower.kext
 sudo kextcache --clear-staging
 ```
 **RESTART** your computer
