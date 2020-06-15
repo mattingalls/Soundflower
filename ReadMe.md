@@ -21,7 +21,7 @@ From the Finder, **HIT** Shift-Cmd-G and **TYPE**:
  
 Then **OPEN THE TERMINAL APP** (found in /Applications/Utilities/)
 
-then type this line, entering your password when asked.
+Type this line, entering your password when asked.
 ```
 sudo kextcache --clear-staging
 ```
