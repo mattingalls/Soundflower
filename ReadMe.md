@@ -23,7 +23,7 @@ Then **OPEN THE TERMINAL APP** (found in /Applications/Utilities/)
 
 Type this line, entering your password when asked.
 ```
-sudo kextcache --clear-staging
+sudo kextcache --prune-staging
 ```
 
 **RESTART** your computer
