@@ -3,7 +3,8 @@
 https://github.com/mattingalls/Soundflower/releases/tag/2.0b2
 is the latest version
 
-
+For anyone struggling with a failed installation of soundflower 2, what you need to do is attempt the install, and when it says that it has failed, DO NOT CLOSE THE WINDOW. At that point make sure you quit system preferences, re-open system preferences, and under Security & Privacy, click allow where it says Matt Ingals has been blocked from opening. After that, close the window with the failed installation, and attempt the installation again. It should work properly. https://www.youtube.com/watch?v=kxx0gNyfXV8
+(Thanks to https://github.com/RogueAmoeba/Soundflower-Original/issues/79#issuecomment-429526063)
 
 
 # THE MOST RELIABLE WAY TO UNINSTALL
