@@ -1208,7 +1208,7 @@ MySleepCallBack(void * x, io_service_t y, natural_t messageType, void * messageA
 	CFStringRef arrayName = [self formDevicePrefName:is2ch];
 	CFArrayRef mapArray = (CFArrayRef) CFPreferencesCopyAppValue(arrayName, kCFPreferencesCurrentApplication);
 	
-	if (mapArray) {
+	if (mapArray && CFArrayGetCount(mapArray) >= numChans) {
 		for (int i = 0; i < numChans; i++) {
 			CFNumberRef num = (CFNumberRef)CFArrayGetValueAtIndex(mapArray, i);
 			if (num) {
