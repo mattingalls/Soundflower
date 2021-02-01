@@ -49,6 +49,11 @@
 AudioBufferList *gInputIOBuffer = NULL;
 #endif
 
+/* verify_noerr was deprecated and removed in OS X High Sierra */
+#ifndef verify_noerr
+#define verify_noerr __Verify_noErr
+#endif
+
 #define kSecondsInRingBuffer 2.
 
 AudioThruEngine::AudioThruEngine() : 

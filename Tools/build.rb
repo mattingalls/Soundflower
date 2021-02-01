@@ -51,12 +51,12 @@ end
 `sudo chown -R root #{@svn_root}/Build/InstallerRoot/System/Library/Extensions/Soundflower.kext`
 `sudo chgrp -R wheel #{@svn_root}/Build/InstallerRoot/System/Library/Extensions/Soundflower.kext`
 
-#if /BUILD SUCCEEDED/.match(out)
-#  puts "    BUILD SUCCEEDED"
-#  puts `ruby #{@svn_root}/Tools/load.rb`
-#else
-#  puts "    BUILD FAILED"
-#end
+if /BUILD SUCCEEDED/.match(out)
+  puts "    BUILD SUCCEEDED"
+  puts `ruby #{@svn_root}/Tools/load.rb`
+else
+  puts "    BUILD FAILED"
+end
 
 
 ###################################################################

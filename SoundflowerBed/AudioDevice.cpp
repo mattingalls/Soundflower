@@ -42,6 +42,11 @@
 
 #include "AudioDevice.h"
 
+/* verify_noerr was deprecated and removed in OS X High Sierra */
+#ifndef verify_noerr
+#define verify_noerr __Verify_noErr
+#endif
+
 void	AudioDevice::Init(AudioDeviceID devid, bool isInput)
 {
 	mID = devid;

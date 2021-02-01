@@ -7,6 +7,11 @@
 #include <CoreServices/CoreServices.h>
 #include <CoreAudio/CoreAudio.h>
 
+/* verify_noerr was deprecated and removed in OS X High Sierra */
+#ifndef verify_noerr
+#define verify_noerr __Verify_noErr
+#endif
+
 @implementation AppController
 
 void	CheckErr(OSStatus err)

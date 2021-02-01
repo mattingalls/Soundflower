@@ -316,6 +316,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 22952B1E104EC967003AF61F /* Soundflower.xcconfig */;
 			buildSettings = {
+				CLANG_CXX_LIBRARY = "libc++";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_LOCATION = YES;
@@ -326,6 +327,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = /Applications/Soundflower;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = Soundflowerbed;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
@@ -340,6 +342,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 22952B1E104EC967003AF61F /* Soundflower.xcconfig */;
 			buildSettings = {
+				CLANG_CXX_LIBRARY = "libc++";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEPLOYMENT_LOCATION = YES;
@@ -347,6 +350,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = /Applications/Soundflower;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = Soundflowerbed;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
