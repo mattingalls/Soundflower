@@ -1,4 +1,6 @@
 
+M1 chip-based Macs are NOT SUPPORTED YET
+
 # JUST LOOKING FOR THE (SIGNED) SOUNDFLOWER INSTALLER?
 https://github.com/mattingalls/Soundflower/releases/tag/2.0b2
 is the latest version
@@ -23,7 +25,7 @@ Then **OPEN THE TERMINAL APP** (found in /Applications/Utilities/)
 
 Type this line, entering your password when asked.
 ```
-sudo kextcache --prune-staging
+sudo touch /Library/Extensions/
 ```
 
 **RESTART** your computer
