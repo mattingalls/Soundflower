@@ -190,22 +190,22 @@ void	AudioThruEngine::Start()
 	
 #if USE_AUDIODEVICEREAD
 	UInt32 streamListSize;
-	verify_noerr (AudioDeviceGetPropertyInfo(gInputDevice, 0, true, kAudioDevicePropertyStreams, &streamListSize, NULL));
+	__Verify_noErr (AudioDeviceGetPropertyInfo(gInputDevice, 0, true, kAudioDevicePropertyStreams, &streamListSize, NULL));
 	UInt32 nInputStreams = streamListSize / sizeof(AudioStreamID);
 	
 	propsize = offsetof(AudioBufferList, mBuffers[nInputStreams]);
 	gInputIOBuffer = (AudioBufferList *)malloc(propsize);
-	verify_noerr (AudioDeviceGetProperty(gInputDevice, 0, true, kAudioDevicePropertyStreamConfiguration, &propsize, gInputIOBuffer));
+	__Verify_noErr (AudioDeviceGetProperty(gInputDevice, 0, true, kAudioDevicePropertyStreamConfiguration, &propsize, gInputIOBuffer));
 	gInputIOBuffer->mBuffers[0].mData = malloc(gInputIOBuffer->mBuffers[0].mDataByteSize);
 	
-	verify_noerr (AudioDeviceSetProperty(gInputDevice, NULL, 0, true, kAudioDevicePropertyRegisterBufferList, propsize, gInputIOBuffer));
+	__Verify_noErr (AudioDeviceSetProperty(gInputDevice, NULL, 0, true, kAudioDevicePropertyRegisterBufferList, propsize, gInputIOBuffer));
 #endif
 	
 	mInputProcState = kStarting;
 	mOutputProcState = kStarting;
 	
-	verify_noerr (AudioDeviceAddIOProc(mInputDevice.mID, InputIOProc, this));
-	verify_noerr (AudioDeviceStart(mInputDevice.mID, InputIOProc));
+	__Verify_noErr (AudioDeviceAddIOProc(mInputDevice.mID, InputIOProc, this));
+	__Verify_noErr (AudioDeviceStart(mInputDevice.mID, InputIOProc));
 	
 	if (mInputDevice.CountChannels() == 2)
 		mOutputIOProc = OutputIOProc;
@@ -213,8 +213,8 @@ void	AudioThruEngine::Start()
 		mOutputIOProc = OutputIOProc16;
 		
 
-	verify_noerr (AudioDeviceAddIOProc(mOutputDevice.mID, mOutputIOProc, this));
-	verify_noerr (AudioDeviceStart(mOutputDevice.mID, mOutputIOProc));
+	__Verify_noErr (AudioDeviceAddIOProc(mOutputDevice.mID, mOutputIOProc, this));
+	__Verify_noErr (AudioDeviceStart(mOutputDevice.mID, mOutputIOProc));
 
 //	UInt32 propsize = sizeof(UInt32);
 //	UInt32 isAlreadyRunning;
@@ -232,11 +232,11 @@ void	AudioThruEngine::Start()
             mRunning = false;
             printf("give up to start.\n");
             
-            verify_noerr (AudioDeviceStop(mInputDevice.mID, InputIOProc));
-            verify_noerr (AudioDeviceRemoveIOProc(mInputDevice.mID, InputIOProc));
+            __Verify_noErr (AudioDeviceStop(mInputDevice.mID, InputIOProc));
+            __Verify_noErr (AudioDeviceRemoveIOProc(mInputDevice.mID, InputIOProc));
             
-            verify_noerr (AudioDeviceStop(mOutputDevice.mID, mOutputIOProc));
-            verify_noerr (AudioDeviceRemoveIOProc(mOutputDevice.mID, mOutputIOProc));
+            __Verify_noErr (AudioDeviceStop(mOutputDevice.mID, mOutputIOProc));
+            __Verify_noErr (AudioDeviceRemoveIOProc(mOutputDevice.mID, mOutputIOProc));
             
             mInputProcState = kOff;
             mOutputProcState = kOff;
@@ -266,8 +266,8 @@ void	AudioThruEngine::ComputeThruOffset()
 		return;
 	}
 //	AudioTimeStamp inputTime, outputTime;
-//	verify_noerr (AudioDeviceGetCurrentTime(mInputDevice.mID, &inputTime));
-//	verify_noerr (AudioDeviceGetCurrentTime(mOutputDevice.mID, &outputTime));
+//	__Verify_noErr (AudioDeviceGetCurrentTime(mInputDevice.mID, &inputTime));
+//	__Verify_noErr (AudioDeviceGetCurrentTime(mOutputDevice.mID, &outputTime));
 	
 //	printf(" in host: %20.0f  samples: %20.f  safety: %7ld  buffer: %4ld\n", Float64(inputTime.mHostTime), inputTime.mSampleTime,
 //		mInputDevice.mSafetyOffset, mInputDevice.mBufferSizeFrames);
@@ -440,7 +440,7 @@ OSStatus AudioThruEngine::OutputIOProc (	AudioDeviceID			inDevice,
 		readTime.mFlags = kAudioTimeStampSampleTimeValid;
 		readTime.mSampleTime = inNow->mSampleTime - gInputSafetyOffset - gOutputSampleCount;
 		
-		verify_noerr(AudioDeviceRead(gInputDevice.mID, &readTime, gInputIOBuffer));
+		__Verify_noErr(AudioDeviceRead(gInputDevice.mID, &readTime, gInputIOBuffer));
 		memcpy(outOutputData->mBuffers[0].mData, gInputIOBuffer->mBuffers[0].mData, outOutputData->mBuffers[0].mDataByteSize);
 #endif
 	} else

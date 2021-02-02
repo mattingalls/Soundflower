@@ -51,10 +51,10 @@ void	AudioDevice::Init(AudioDeviceID devid, bool isInput)
 	UInt32 propsize;
 	
 	propsize = sizeof(UInt32);
-	verify_noerr(AudioDeviceGetProperty(mID, 0, mIsInput, kAudioDevicePropertySafetyOffset, &propsize, &mSafetyOffset));
+	__Verify_noErr(AudioDeviceGetProperty(mID, 0, mIsInput, kAudioDevicePropertySafetyOffset, &propsize, &mSafetyOffset));
 	
 	propsize = sizeof(UInt32);
-	verify_noerr(AudioDeviceGetProperty(mID, 0, mIsInput, kAudioDevicePropertyBufferFrameSize, &propsize, &mBufferSizeFrames));
+	__Verify_noErr(AudioDeviceGetProperty(mID, 0, mIsInput, kAudioDevicePropertyBufferFrameSize, &propsize, &mBufferSizeFrames));
 	
 	UpdateFormat();
 }
@@ -62,16 +62,16 @@ void	AudioDevice::Init(AudioDeviceID devid, bool isInput)
 void	AudioDevice::UpdateFormat()
 {
 	UInt32 propsize = sizeof(AudioStreamBasicDescription);
-	verify_noerr(AudioDeviceGetProperty(mID, 0, mIsInput, kAudioDevicePropertyStreamFormat, &propsize, &mFormat));
+	__Verify_noErr(AudioDeviceGetProperty(mID, 0, mIsInput, kAudioDevicePropertyStreamFormat, &propsize, &mFormat));
 }
 
 void	AudioDevice::SetBufferSize(UInt32 size)
 {
 	UInt32 propsize = sizeof(UInt32);
-	verify_noerr(AudioDeviceSetProperty(mID, NULL, 0, mIsInput, kAudioDevicePropertyBufferFrameSize, propsize, &size));
+	__Verify_noErr(AudioDeviceSetProperty(mID, NULL, 0, mIsInput, kAudioDevicePropertyBufferFrameSize, propsize, &size));
 
 	propsize = sizeof(UInt32);
-	verify_noerr(AudioDeviceGetProperty(mID, 0, mIsInput, kAudioDevicePropertyBufferFrameSize, &propsize, &mBufferSizeFrames));
+	__Verify_noErr(AudioDeviceGetProperty(mID, 0, mIsInput, kAudioDevicePropertyBufferFrameSize, &propsize, &mBufferSizeFrames));
 }
 
 OSStatus	AudioDevice::SetSampleRate(Float64 sr)
@@ -94,14 +94,14 @@ bool    AudioDevice::IsVolumeAvailableForMaster()
 {
     //Assume all device which support getting Volume also support setting Volume.
     Boolean isWritable = false;
-    verify_noerr(AudioDeviceGetPropertyInfo(mID,0,false,kAudioDevicePropertyVolumeScalar,NULL,&isWritable));
+    __Verify_noErr(AudioDeviceGetPropertyInfo(mID,0,false,kAudioDevicePropertyVolumeScalar,NULL,&isWritable));
     return isWritable;
 }
 
 bool    AudioDevice::IsVolumeAvailableForChannels()
 {
     Boolean isWritable = false;
-    verify_noerr(AudioDeviceGetPropertyInfo(mID,1,false,kAudioDevicePropertyVolumeScalar,NULL,&isWritable));
+    __Verify_noErr(AudioDeviceGetPropertyInfo(mID,1,false,kAudioDevicePropertyVolumeScalar,NULL,&isWritable));
     return isWritable;
 }
 
@@ -119,12 +119,12 @@ void    AudioDevice::SetVolumeScalar(float val)
     
     if(IsVolumeAvailableForMaster())
     {
-        verify_noerr(AudioDeviceSetProperty(mID, NULL, 0/*master channel*/, false, kAudioDevicePropertyVolumeScalar, propSize, &volumeScalar));
+        __Verify_noErr(AudioDeviceSetProperty(mID, NULL, 0/*master channel*/, false, kAudioDevicePropertyVolumeScalar, propSize, &volumeScalar));
     }else if(IsVolumeAvailableForChannels())
     {
         int channel_num = this->CountChannels();
         for (int i = 0 ; i < channel_num; i++){
-            verify_noerr(AudioDeviceSetProperty(mID, NULL, 1 + i, false, kAudioDevicePropertyVolumeScalar, propSize, &volumeScalar));
+            __Verify_noErr(AudioDeviceSetProperty(mID, NULL, 1 + i, false, kAudioDevicePropertyVolumeScalar, propSize, &volumeScalar));
         }
     }else{
         //No Support for kAudioDevicePropertyVolumeScalar
@@ -138,11 +138,11 @@ float   AudioDevice::GetVolumeScalar()
     
     if(IsVolumeAvailableForMaster())
     {
-        verify_noerr(AudioDeviceGetProperty(mID, 0/*master channel*/, false, kAudioDevicePropertyVolumeScalar, &propSize, &volumeScalar));
+        __Verify_noErr(AudioDeviceGetProperty(mID, 0/*master channel*/, false, kAudioDevicePropertyVolumeScalar, &propSize, &volumeScalar));
     }else if(IsVolumeAvailableForChannels())
     {
         //we take value from channel 1
-        verify_noerr(AudioDeviceGetProperty(mID, 1, false, kAudioDevicePropertyVolumeScalar, &propSize, &volumeScalar));
+        __Verify_noErr(AudioDeviceGetProperty(mID, 1, false, kAudioDevicePropertyVolumeScalar, &propSize, &volumeScalar));
         
     }else{
         //No Support for kAudioDevicePropertyVolumeScalar
@@ -157,11 +157,11 @@ float   AudioDevice::GetVolumeDB()
     
     if(IsVolumeAvailableForMaster())
     {
-        verify_noerr(AudioDeviceGetProperty(mID, 0/*master channel*/, false, kAudioDevicePropertyVolumeDecibels, &propSize, &volumeDB));
+        __Verify_noErr(AudioDeviceGetProperty(mID, 0/*master channel*/, false, kAudioDevicePropertyVolumeDecibels, &propSize, &volumeDB));
     }else if(IsVolumeAvailableForChannels())
     {
         //we take value from channel 1
-        verify_noerr(AudioDeviceGetProperty(mID, 1, false, kAudioDevicePropertyVolumeDecibels, &propSize, &volumeDB));
+        __Verify_noErr(AudioDeviceGetProperty(mID, 1, false, kAudioDevicePropertyVolumeDecibels, &propSize, &volumeDB));
         
     }else{
         //No Support for kAudioDevicePropertyVolumeDecibels
@@ -191,6 +191,6 @@ int		AudioDevice::CountChannels()
 
 char *	AudioDevice::GetName(char *buf, UInt32 maxlen)
 {
-	verify_noerr(AudioDeviceGetProperty(mID, 0, mIsInput, kAudioDevicePropertyDeviceName, &maxlen, buf));
+	__Verify_noErr(AudioDeviceGetProperty(mID, 0, mIsInput, kAudioDevicePropertyDeviceName, &maxlen, buf));
 	return buf;
 }
