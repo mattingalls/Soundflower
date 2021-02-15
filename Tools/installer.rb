@@ -74,7 +74,10 @@ end
 def getversion()
   theVersion = "0.0.0"
 
-  f = File.open("#{@installer_root}/System/Library/Extensions/Soundflower.kext/Contents/Info.plist", "r")
+  info_plist_path = "#{@installer_root}/Library/Extensions/Soundflower.kext/Contents/Info.plist"
+  info_plist_path = "#{@installer_root}/System/Library/Extensions/Soundflower.kext/Contents/Info.plist" unless File.exists?(info_plist_path)
+ 
+  f = File.open(info_plist_path, "r")
   str = f.read
   theVersion = str.match(/<key>CFBundleShortVersionString<\/key>\n.*<string>(.*)<\/string>/).captures[0]
   f.close
