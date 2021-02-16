@@ -1,4 +1,4 @@
-/*	Copyright: 	© Copyright 2004 Apple Computer, Inc. All rights reserved.
+/*	Copyright: 	Â© Copyright 2004 Apple Computer, Inc. All rights reserved.
 
 	Disclaimer:	IMPORTANT:  This Apple software is supplied to you by Apple Computer, Inc.
 			("Apple") in consideration of your agreement to the following terms, and your
@@ -7,7 +7,7 @@
 			please do not use, install, modify or redistribute this Apple software.
 
 			In consideration of your agreement to abide by the following terms, and subject
-			to these terms, Apple grants you a personal, non-exclusive license, under AppleÕs
+			to these terms, Apple grants you a personal, non-exclusive license, under AppleÃ•s
 			copyrights in this original Apple software (the "Apple Software"), to use,
 			reproduce, modify and redistribute the Apple Software, with or without
 			modifications, in source and/or binary forms; provided that if you redistribute
@@ -407,7 +407,7 @@ OSStatus AudioThruEngine::OutputIOProc (	AudioDeviceID			inDevice,
 					chan++)
 			{
 				UInt32 outChan = This->GetChannelMap(chan) - chanstart[chan];		
-				if (outChan >= 0 && outChan < outnchnls)
+				if (outChan < outnchnls)
 				{
 					// odd-even
 					float *in = (float *)This->mWorkBuf + (chan % innchnls); 
