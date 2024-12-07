@@ -1,10 +1,5 @@
 
-**M1 chip-based Macs are NOT YET SUPPORTED**
-
-# JUST LOOKING FOR THE (SIGNED) SOUNDFLOWER INSTALLER?
-https://github.com/mattingalls/Soundflower/releases/tag/2.0b2
-is the latest version
-
+**DEPRECATED Silicon Macs are not supported. New version coming shortly!**
 
 
 
