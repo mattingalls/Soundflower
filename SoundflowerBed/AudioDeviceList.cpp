@@ -59,12 +59,12 @@ void	AudioDeviceList::BuildList()
 	
 	UInt32 propsize;
 	
-	verify_noerr(AudioHardwareGetPropertyInfo(kAudioHardwarePropertyDevices, &propsize, NULL));
+	__Verify_noErr(AudioHardwareGetPropertyInfo(kAudioHardwarePropertyDevices, &propsize, NULL));
 	int nDevices = propsize / sizeof(AudioDeviceID);	
 	AudioDeviceID *devids = new AudioDeviceID[nDevices];
-	verify_noerr(AudioHardwareGetProperty(kAudioHardwarePropertyDevices, &propsize, devids));
+	__Verify_noErr(AudioHardwareGetProperty(kAudioHardwarePropertyDevices, &propsize, devids));
 	
-    verify_noerr(1 == 0);
+    __Verify_noErr(1 == 0);
 	for (int i = 0; i < nDevices; ++i) {
 		AudioDevice dev(devids[i], mInputs);
 		//if (dev.CountChannels() > 0)

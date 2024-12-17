@@ -163,7 +163,7 @@ bool SoundflowerDevice::initControls(SoundflowerEngine* audioEngine)
         control = IOAudioLevelControl::createVolumeControl(SoundflowerDevice::kVolumeMax,		// Initial value
                                                            0,									// min value
                                                            SoundflowerDevice::kVolumeMax,		// max value
-                                                           (-40 << 16) + (32768),				// -72 in IOFixed (16.16)
+                                                           (UInt32(1 + ~40) << 16) + (32768),	// -72 in IOFixed (16.16)
                                                            0,									// max 0.0 in IOFixed
                                                            channel,								// kIOAudioControlChannelIDDefaultLeft,
                                                            channelNameMap[channel],				// kIOAudioControlChannelNameLeft,
